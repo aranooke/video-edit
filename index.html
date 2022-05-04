@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  
+     <script src="./content.js"></script>
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .flexbox {
+            display:block;
+            max-width: 300px;
+            margin-left: 10px;
+            margin-top: 10px;
+            padding:40px;
+            box-shadow: 0 2px 5px 4px black;
+        }
+        label {
+            font-size: 17px;
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/uAb6rCbvdBs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <div class="flexbox">
+        <div>
+            <label for="invert">Инвертировать:</label>
+            <input   min = "0" step = "0.1" max = "1" type="range" id="invert">
+        </div>
+        <div>
+            <label for="grayscale">Затемнить:</label>
+            <input min = "0" step = "0.1" max = "1" type="range" id="grayscale">
+        </div>
+        <div>
+            <label for="">Оттенок</label>
+            <input type="text" id="huerotate">
+        </div>
+
+        <div>
+            <label for="">Контраст</label>
+            <input type="text" id="contrast">
+    </div>
+        
+        <div>
+            <label for="">Насыщенность</label>
+            <input type="text" id="saturate">
+        </div>
+
+        <div>
+            <label for="">Яркость</label>
+            <input type="text" id="brightness">
+        </div>
+        <div>
+            <label for="">Прозрачность</label>
+            <input type="text" id="opacity">
+        </div>
+        <button id = "reset" class = "btn">Сбросить настройки</button>
+
+    </div>
+
+    <script>
+               
+var video = document.getElementsByTagName("video");
+var iframe = document.getElementsByTagName("iframe");
+var createInput = document.createElement("input");
+       
+        let button = document.getElementById("reset");
+        button.addEventListener("click",()=> {
+            iframe[0].style.filter = "";
+        })
+        
+
+        
+        // video[0].style.filter = `grayscale(0.5)` ;
+
+
+        var input = Array.from(document.getElementsByTagName("input"));
+        var iterator = 0;
+        input.map((value,index,array,names) => {
+            input[index].type = "range";
+            input[index].min = 0;
+            input[index].max = 1;
+            input[index].step = 0.01;
+            console.log(input[index])
+        })
+
+        
+
+
+
+
+
+
+
+        function perebor() {
+            for(let i = 0;i < names.length;i++)
+            {
+                console.log(i);
+                input[i] = document.getElementById(names[i]).addEventListener("change",(event)=> {
+                    console.log("ок");
+                })
+            }
+        }
+        // perebor();
+        
+        function grayscale() 
+        {
+            let grayscale = document.getElementById("grayscale");
+            grayscale.addEventListener("change",(event)=> {
+                iframe[0].style.filter = `grayscale(${grayscale.value})`;
+            })
+        }
+
+        function invert() {
+
+        
+            let invert = document.getElementById("invert");
+            invert.addEventListener("change",(event)=> {
+                iframe[0].style.filter = `invert(${invert.value})` ;
+            })
+        }
+        function huerotate()
+        {
+            let huerotate = document.getElementById("huerotate");
+            huerotate.addEventListener("change",(event)=> {
+                iframe[0].style.filter = `hue-rotate(${huerotate.value*360}deg)` ;
+            })
+
+        }
+
+        function opacity() 
+        {
+            let opacity = document.getElementById("opacity");
+            opacity.addEventListener("change",(event)=> {
+                iframe[0].style.filter = `opacity(${opacity.value})` ;
+            })
+        }
+
+        function brightness() 
+        {
+            let brightness = document.getElementById("brightness");
+            brightness.addEventListener("change",(event)=> {
+                iframe[0].style.filter = `brightness(${brightness.value*5})` ;
+            })
+        }
+        function contrast() {
+            let contrast = document.getElementById("contrast");
+            contrast.addEventListener("change",(event)=> {
+                iframe[0].style.filter = `brightness(${contrast.value*3})` ;
+            })
+        }
+        function saturate() {
+            let saturate = document.getElementById("saturate");
+            saturate.addEventListener("change",(event)=> {
+                iframe[0].style.filter = `brightness(${saturate.value*10})` ;
+            })
+        }
+        
+        invert();
+        grayscale();
+        huerotate();
+        opacity();
+        brightness();
+        contrast();
+        saturate();
+    </script>
+    
+</body>
+</html>
